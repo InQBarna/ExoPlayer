@@ -195,10 +195,10 @@ public final class WavExtractor implements Extractor {
       @C.PcmEncoding
       int pcmEncoding =
           WavUtil.getPcmEncodingForType(wavFormat.formatType, wavFormat.bitsPerSample);
-      /* if (pcmEncoding == C.ENCODING_INVALID) {
+      if (pcmEncoding == C.ENCODING_INVALID) {
         throw ParserException.createForUnsupportedContainerFeature(
             "Unsupported WAV format type: " + wavFormat.formatType);
-      }*/
+      }
       outputWriter =
           new PassthroughOutputWriter(
               extractorOutput, trackOutput, wavFormat, MimeTypes.AUDIO_RAW, pcmEncoding);

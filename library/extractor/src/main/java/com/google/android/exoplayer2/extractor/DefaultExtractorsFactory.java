@@ -302,16 +302,15 @@ public final class DefaultExtractorsFactory implements ExtractorsFactory {
       Uri uri, Map<String, List<String>> responseHeaders) {
     List<Extractor> extractors = new ArrayList<>(/* initialCapacity= */ 14);
 
+    @FileTypes.Type int uriInferredFileType = inferFileTypeFromUri(uri);
+    if (uriInferredFileType != FileTypes.UNKNOWN) {
+      addExtractorsForFileType(uriInferredFileType, extractors);
+    }
+
     @FileTypes.Type
     int responseHeadersInferredFileType = inferFileTypeFromResponseHeaders(responseHeaders);
     if (responseHeadersInferredFileType != FileTypes.UNKNOWN) {
       addExtractorsForFileType(responseHeadersInferredFileType, extractors);
-    }
-
-    @FileTypes.Type int uriInferredFileType = inferFileTypeFromUri(uri);
-    if (uriInferredFileType != FileTypes.UNKNOWN
-        && uriInferredFileType != responseHeadersInferredFileType) {
-      addExtractorsForFileType(uriInferredFileType, extractors);
     }
 
     for (int fileType : DEFAULT_EXTRACTOR_ORDER) {
