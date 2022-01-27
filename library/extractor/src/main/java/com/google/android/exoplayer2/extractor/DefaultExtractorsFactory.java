@@ -358,7 +358,7 @@ public final class DefaultExtractorsFactory implements ExtractorsFactory {
 
     @FileTypes.Type
     int responseHeadersInferredFileType = inferFileTypeFromResponseHeaders(responseHeaders);
-    if (responseHeadersInferredFileType != FileTypes.UNKNOWN) {
+    if (uriInferredFileType == FileTypes.UNKNOWN && responseHeadersInferredFileType != FileTypes.UNKNOWN) {
       addExtractorsForFileType(responseHeadersInferredFileType, extractors);
     }
 
