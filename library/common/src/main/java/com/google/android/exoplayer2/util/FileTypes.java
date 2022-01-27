@@ -197,68 +197,71 @@ public final class FileTypes {
 
   /** Returns the {@link Type} corresponding to the {@link Uri} provided. */
   public static @FileTypes.Type int inferFileTypeFromUri(Uri uri) {
-    @Nullable String filename = uri.getLastPathSegment();
-    if (filename == null) {
+    @Nullable String filename1 = uri.getLastPathSegment();
+    if (filename1 == null) {
       return FileTypes.UNKNOWN;
-    } else if (filename.endsWith(EXTENSION_AC3) || filename.endsWith(EXTENSION_EC3)) {
-      return FileTypes.AC3;
-    } else if (filename.endsWith(EXTENSION_AC4)) {
-      return FileTypes.AC4;
-    } else if (filename.endsWith(EXTENSION_ADTS) || filename.endsWith(EXTENSION_AAC)) {
-      return FileTypes.ADTS;
-    } else if (filename.endsWith(EXTENSION_AMR)) {
-      return FileTypes.AMR;
-    } else if (filename.endsWith(EXTENSION_FLAC)) {
-      return FileTypes.FLAC;
-    } else if (filename.endsWith(EXTENSION_FLV)) {
-      return FileTypes.FLV;
-    } else if (filename.endsWith(EXTENSION_MID)
+    } else {
+      String filename = filename1.toLowerCase();
+      if (filename.endsWith(EXTENSION_AC3) || filename.endsWith(EXTENSION_EC3)) {
+        return FileTypes.AC3;
+      } else if (filename.endsWith(EXTENSION_AC4)) {
+        return FileTypes.AC4;
+      } else if (filename.endsWith(EXTENSION_ADTS) || filename.endsWith(EXTENSION_AAC)) {
+        return FileTypes.ADTS;
+      } else if (filename.endsWith(EXTENSION_AMR)) {
+        return FileTypes.AMR;
+      } else if (filename.endsWith(EXTENSION_FLAC)) {
+        return FileTypes.FLAC;
+      } else if (filename.endsWith(EXTENSION_FLV)) {
+        return FileTypes.FLV;
+      } else if (filename.endsWith(EXTENSION_MID)
         || filename.endsWith(EXTENSION_MIDI)
         || filename.endsWith(EXTENSION_SMF)) {
       return FileTypes.MIDI;
     } else if (filename.startsWith(
-            EXTENSION_PREFIX_MK,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_MK.length() + 1))
-        || filename.endsWith(EXTENSION_WEBM)) {
-      return FileTypes.MATROSKA;
-    } else if (filename.endsWith(EXTENSION_MP3)) {
-      return FileTypes.MP3;
-    } else if (filename.endsWith(EXTENSION_MP4)
-        || filename.startsWith(
-            EXTENSION_PREFIX_M4,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_M4.length() + 1))
-        || filename.startsWith(
-            EXTENSION_PREFIX_MP4,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_MP4.length() + 1))
-        || filename.startsWith(
-            EXTENSION_PREFIX_CMF,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_CMF.length() + 1))) {
-      return FileTypes.MP4;
-    } else if (filename.startsWith(
-            EXTENSION_PREFIX_OG,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_OG.length() + 1))
-        || filename.endsWith(EXTENSION_OPUS)) {
-      return FileTypes.OGG;
-    } else if (filename.endsWith(EXTENSION_PS)
-        || filename.endsWith(EXTENSION_MPEG)
-        || filename.endsWith(EXTENSION_MPG)
-        || filename.endsWith(EXTENSION_M2P)) {
-      return FileTypes.PS;
-    } else if (filename.endsWith(EXTENSION_TS)
-        || filename.startsWith(
-            EXTENSION_PREFIX_TS,
-            /* toffset= */ filename.length() - (EXTENSION_PREFIX_TS.length() + 1))) {
-      return FileTypes.TS;
-    } else if (filename.endsWith(EXTENSION_WAV) || filename.endsWith(EXTENSION_WAVE)) {
-      return FileTypes.WAV;
-    } else if (filename.endsWith(EXTENSION_VTT) || filename.endsWith(EXTENSION_WEBVTT)) {
-      return FileTypes.WEBVTT;
-    } else if (filename.endsWith(EXTENSION_JPG) || filename.endsWith(EXTENSION_JPEG)) {
-      return FileTypes.JPEG;
+          EXTENSION_PREFIX_MK,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_MK.length() + 1))
+          || filename.endsWith(EXTENSION_WEBM)) {
+        return FileTypes.MATROSKA;
+      } else if (filename.endsWith(EXTENSION_MP3)) {
+        return FileTypes.MP3;
+      } else if (filename.endsWith(EXTENSION_MP4)
+          || filename.startsWith(
+          EXTENSION_PREFIX_M4,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_M4.length() + 1))
+          || filename.startsWith(
+          EXTENSION_PREFIX_MP4,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_MP4.length() + 1))
+          || filename.startsWith(
+          EXTENSION_PREFIX_CMF,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_CMF.length() + 1))) {
+        return FileTypes.MP4;
+      } else if (filename.startsWith(
+          EXTENSION_PREFIX_OG,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_OG.length() + 1))
+          || filename.endsWith(EXTENSION_OPUS)) {
+        return FileTypes.OGG;
+      } else if (filename.endsWith(EXTENSION_PS)
+          || filename.endsWith(EXTENSION_MPEG)
+          || filename.endsWith(EXTENSION_MPG)
+          || filename.endsWith(EXTENSION_M2P)) {
+        return FileTypes.PS;
+      } else if (filename.endsWith(EXTENSION_TS)
+          || filename.startsWith(
+          EXTENSION_PREFIX_TS,
+          /* toffset= */ filename.length() - (EXTENSION_PREFIX_TS.length() + 1))) {
+        return FileTypes.TS;
+      } else if (filename.endsWith(EXTENSION_WAV) || filename.endsWith(EXTENSION_WAVE)) {
+        return FileTypes.WAV;
+      } else if (filename.endsWith(EXTENSION_VTT) || filename.endsWith(EXTENSION_WEBVTT)) {
+        return FileTypes.WEBVTT;
+      } else if (filename.endsWith(EXTENSION_JPG) || filename.endsWith(EXTENSION_JPEG)) {
+        return FileTypes.JPEG;
     } else if (filename.endsWith(EXTENSION_AVI)) {
       return FileTypes.AVI;
-    } else {
-      return FileTypes.UNKNOWN;
+      } else {
+        return FileTypes.UNKNOWN;
+      }
     }
   }
 }
